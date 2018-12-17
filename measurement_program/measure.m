@@ -25,4 +25,4 @@ soundsc(measurement.speaker,Fs);
 sss = recording();
 measurement.microphone = sss;
 
-save_data(sprintf('../data/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
+save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
