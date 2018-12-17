@@ -14,7 +14,7 @@ filename      = sprintf('%d-exp', i);
 tmp_filename  =input(sprintf('Enter filename (default: "%s" >> ', filename), 's');
 
 if isempty(tmp_filename) % default filename
-    i = i+1;
+    measure_index = measure_index+1;
 else
     filename = tmp_filename;
 end
