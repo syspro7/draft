@@ -10,7 +10,7 @@ measurement.distance = dist;
 measurement.description = input('Any description? >> ', 's');
 
 % filename
-filename      = sprintf('%d-exp', i);
+filename      = sprintf('%d-exp', measure_index);
 tmp_filename  =input(sprintf('Enter filename (default: "%s" >> ', filename), 's');
 
 if isempty(tmp_filename) % default filename
@@ -20,7 +20,8 @@ else
 end
 
 % wave data
-measurement.speaker = f1500.*mask;
+% wav = select_wave()
+measurement.speaker = wav;
 soundsc(measurement.speaker,Fs);
 sss = recording();
 measurement.microphone = sss;
