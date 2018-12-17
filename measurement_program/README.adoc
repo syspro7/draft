@@ -14,3 +14,14 @@ run init.m
 ----
 を書くこと。関数では不要。
 ====
+
+== correlation 関数
+引数はmeasurement構造体とサンプリング周波数Fs+
+measurement構造体のmicrophoneとspeakerの相互相関を計算+
+戻り値は[相互相関の大きさ, 時間のインデックス]+
+時間はあくまでインデックスでとっているので, 実際の時間に換算するならFsで割る必要がある.+
+また, 相互相関のプロットも表示.
+
+== correlationFromFile 関数
+第一引数がmeasurement構造体ではなく, measurement構造体を保存しているファイルの場所を文字列で指定.
+それ以外は等しい.
