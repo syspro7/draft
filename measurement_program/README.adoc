@@ -1,0 +1,16 @@
+:icons: font
+
+= 計測プログラム改修版
+
+`make_wave/` の整理版。 `make_wave/` はこのまま残して、以降は `measurement_program/` で開発。
+
+[NOTE]
+.注意
+====
+各 `.m` ファイルの先頭に
+[source, matlab]
+----
+run init.m
+----
+を書くこと。関数では不要。
+====
