@@ -15,7 +15,7 @@ peack_inds_00 = find(microphone_1120_00 == peack_00);
 peack_inds_15 = find(microphone_1120_15 == peack_15);
 
 % set min value index in 20K
-rolled_00 = circshift(microphone_1120_00, 20000 - peack_inds_00-1);
+rolled_00 = circshift(microphone_1120_00, 20000 - peack_inds_00);
 rolled_15 = circshift(microphone_1120_15, 20000 - peack_inds_15);
 
 
