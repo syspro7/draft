@@ -15,6 +15,33 @@ run init.m
 を書くこと。関数では不要。
 ====
 
+== `save_wave` mファイル
+変数名を指定してファイルに保存。
+保存先は `draft/data/waves/`
+
+.実行例
+[source, MATLAB]
+----
+>> t = 0:1/Fs:1;
+>> s = sin(t);
+>> c = cos(t);
+>> save_wave
+wave data variable name >> s
+Enter save name >> test1
+Description >> sin wave
+>> save_wave
+wave data variable name >> c
+Enter save name >> test2
+Description >> cos wave
+----
+
+
+[WARNING]
+.副作用
+====
+ワークスペース変数 `waves` にも追加されるので注意。
+====
+
 == correlation 関数
 引数はmeasurement構造体とサンプリング周波数Fs +
 measurement構造体のmicrophoneとspeakerの相互相関を計算 +
