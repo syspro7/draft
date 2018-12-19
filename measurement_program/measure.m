@@ -20,28 +20,41 @@ else
 end
 
 % wave data
-% wav = select_wave()
-measurement.speaker = wav;
+wav = select_wave(waves);
+measurement.speaker = wav.wave;
 
-p1 = gcp();
-p2 = gcp();
-p3 = gcp();
-f = parfeval(p1, @pause, 0, 10);
+T = dinput('Input T', 'T');
 
-parfeval(p2, @start_sound, 0, f, measurement.speaker, Fs);
-f3 = parfeval(p3, @start_record, 1, f);
+%if ~exist('recObj', 'var')
+    recObj = audiorecorder(44100,24,1);
+%end
+
+%if ~exist('process', 'var')
+    p1 = gcp();
+    p2 = gcp();
+    p3 = gcp();
+%end
+
+% offset
+f = parfeval(p1, @pause, 0, 5);
+
+%parfeval(process(2), @start_sound, 0, f, measurement.speaker, Fs);
+f3 = parfeval(p3, @start_record, 1, f, recObj, T);
 
 sss = fetchOutputs(f3);
 measurement.microphone = sss;
 
-save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
+% Plot the waveform.
+plot(1/44100:1/44100:T, sss);
+
+%save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
 
 function start_sound(f, speaker, Fs)
 wait(f);
 soundsc(speaker, Fs);
 end
 
-function sss = start_record(f)
+function sss = start_record(f, recObj, T)
 wait(f);
-sss = recording();
+sss = recording(recObj, T);
 end
