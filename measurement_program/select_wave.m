@@ -7,7 +7,7 @@ function wave = select_wave(wave_list)
 size = numel(wave_list);
 % size of cell array.
 
-figure;
+figure(3);
 
 for i = 1:size
     wave_plot(wave_list{i}, i, size);
