@@ -20,10 +20,14 @@ else
 end
 
 % wave data
-% wav = select_wave()
-measurement.speaker = wav;
+wav = select_wave(waves);
+measurement.speaker = wav.wave;
 soundsc(measurement.speaker,Fs);
 sss = recording();
 measurement.microphone = sss;
 
-save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
+tmp = input('Save? (default: y) >> ', 's');
+if isempty(tmp) || any(regexpi(tmp, 'y'))
+    save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
+end
+clear tmp d tmp_filename filename wav
