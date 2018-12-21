@@ -1,13 +1,9 @@
-function s = recording(recObj, T)
+function s = recording(wav, recObj, T)
 
-disp('Start rec.');
-recordblocking(recObj, T);
-disp('End rec.');
+record(recObj, T);
+soundsc(wav.wave, wav.Fs);
 
-% Play back the recording.
-%play(recObj);
-
-% Store data in double-precision array.
+pause(T*1.1);
 s = getaudiodata(recObj)';
 
 end

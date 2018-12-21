@@ -26,18 +26,12 @@ measurement.speaker = wav.wave;
 T = dinput('Input T', 'T');
 
 if ~exist('recObj', 'var')
-    recObj          = audiorecorder(44100,24,1);
+    recObj          = audiorecorder(Fs, 24, 1);
     recObj.StartFcn	= 'disp(''Start speaking.'')';
     recObj.StopFcn	= 'disp(''End of recording.'')';
-
 end
 
-record(recObj, T);
-soundsc(measurement.speaker, Fs);
-
-pause(T);
-sss = getaudiodata(recObj)';
-
+sss = recording(wav, recObj, T);
 measurement.microphone = sss;
 
 % Plot the waveform.
