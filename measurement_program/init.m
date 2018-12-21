@@ -1,5 +1,7 @@
 
-if ~exist('initialized', 'var')
+if ~exist('initialized', 'var')    
+    % addpath
+    addpath('./utils');
     
     % var declaration
     Fs = 44100;

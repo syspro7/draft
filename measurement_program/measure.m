@@ -22,12 +22,26 @@ end
 % wave data
 wav = select_wave(waves);
 measurement.speaker = wav.wave;
-soundsc(measurement.speaker,Fs);
-sss = recording();
+
+T = dinput('Input T', 'T');
+
+if ~exist('recObj', 'var')
+    recObj          = audiorecorder(Fs, 24, 1);
+    recObj.StartFcn	= 'disp(''Start speaking.'')';
+    recObj.StopFcn	= 'disp(''End of recording.'')';
+end
+
+sss = recording(wav, recObj, T);
 measurement.microphone = sss;
 
+% Plot the waveform.
+figure(4);
+plot(0:1/Fs:numel(sss)/Fs - 1/Fs, sss);
+
+% save
 tmp = input('Save? (default: y) >> ', 's');
 if isempty(tmp) || any(regexpi(tmp, 'y'))
     save_data(sprintf('../data/measure/%d-%d-%d/', year(d), month(d), day(d)), filename, measurement);
 end
+
 clear tmp d tmp_filename filename wav
