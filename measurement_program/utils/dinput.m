@@ -10,7 +10,7 @@ function [out] = dinput(varargin)
     end
     
     try
-        default = evalin('base', varname);
+        default = evalin('caller', varname);
     catch ex 
     end
     
