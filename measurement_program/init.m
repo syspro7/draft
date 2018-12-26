@@ -4,7 +4,7 @@ if ~exist('initialized', 'var')
     addpath('./utils');
     
     % var declaration
-    Fs = 44100;
+    Fs = 96000;
     measure_index = 1;
     
     % load waves

@@ -9,6 +9,16 @@ if ~exist('waves', 'var')
     return;
 end
 
-d = save_wave_( eval(input('wave data variable name >> ', 's')), Fs );
+varname = input('wave data variable name >> ', 's');
+name = dinput('Enter save name', 's', 'varname');
+
+if isempty(name)
+    disp('Name can''t be empty');
+    return
+end
+
+desc = input('Description >> ', 's');
+
+d = save_wave_( eval(varname), name, desc, Fs );
 
 waves{length(waves)+1} = d;
