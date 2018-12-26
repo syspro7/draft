@@ -10,6 +10,11 @@ full_path = sprintf('%s/%s.mat', dir_path, name);
 
 if exist(full_path, 'file') == 2
     fprintf('ERROR!! %s already exists\n', full_path);
+    user =input(sprintf('Force save? (default: "%s") >> ', 'n'), 's');
+    
+    if ~isempty(user) && any(regexpi(user, 'y'))
+        save(full_path, 'data');
+    end
 else
     save(full_path, 'data');
 end
