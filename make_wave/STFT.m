@@ -1,5 +1,5 @@
-Tk = 0.1;      % seconds
+Tk = 0.05;      % seconds
 Fs = 44100; % sampling rate
 Nk = Fs*Tk;  % points per window;
 wind = hann(Nk); % make a hann window
-[S, f, tt] = spectrogram(s6,wind,Nk/2,[],Fs,'yaxis');
+spectrogram(measurement.microphone,wind,floor(Nk/2),[],Fs,'yaxis');
