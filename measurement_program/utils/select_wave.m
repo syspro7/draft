@@ -28,5 +28,5 @@ subplot(size, 1, index);
 plot(t, wave.wave);
 xlabel("t[s]");
 ylabel("wave");
-title("wave" + string(index));
+title(sprintf("%d: %s (%s)", index, wave.name, wave.description));
 end
