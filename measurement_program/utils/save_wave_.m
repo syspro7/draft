@@ -1,11 +1,4 @@
-function [d] = save_wave_(val, Fs)
-    name = input('Enter save name >> ', 's');
-    if isempty(name)
-        disp('Name can''t be empty');
-        return
-    end
-    
-    desc = input('Description >> ', 's');
+function [d] = save_wave_(val, name, desc, Fs)
     
     data.description = desc;
     data.wave        = val;
