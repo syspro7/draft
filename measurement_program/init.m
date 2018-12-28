@@ -14,7 +14,18 @@ if ~exist('initialized', 'var')
         f = wave_files(i);
         [~, n, ~] = fileparts(f.name);
         waves{i} = load_data(f.folder, n);
+       
+        if ~isfield(waves{i}, 'scale_index')
+            wave = waves{i};
+            abserrs = abs(wave.wave-mean(wave.wave));
+            maxabserr = max(abserrs);
+            scale_index = find(abserrs > maxabserr*0.03, 1, 'last');
+            waves{i}.scale_index = scale_index;
+        end
     end
+    
+    % env vars
+    env = struct();
     
     clear f i n wave_files
     initialized = true;
