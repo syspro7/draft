@@ -1,5 +1,8 @@
 run init.m
 
+% frequency
+measurement.Fs = Fs;
+
 % date
 measurement.date = datetime('now');
 d                = measurement.date;
