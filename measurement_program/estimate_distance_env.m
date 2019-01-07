@@ -1,4 +1,4 @@
-function estimate_distance_env(base,test,testdist,Fs,thre)
+function estidist = estimate_distance_env(base,test,testdist,Fs,thre)
     if ~exist('Fs','var')
         Fs = 96000;
     end
@@ -8,6 +8,7 @@ function estimate_distance_env(base,test,testdist,Fs,thre)
     [~,b] = max(Rmm); 
     
     sa = b-(length(Rmm)+1)/2;
+    
     figure;
     grid on; hold on;
     if sa < 0
@@ -27,6 +28,7 @@ function estimate_distance_env(base,test,testdist,Fs,thre)
     else
         plot((1:length(base)-sa)*1/Fs,[base(sa+1:end)' test(1:end-sa)']);
         plot((1:length(base)-sa)*1/Fs,[base_upperenv(sa+1:end)' test_upperenv(1:end-sa)']);
+        plot((1:length(base)-sa)*1/Fs,[lowpass(base_upperenv(sa+1:end)',lpthre,Fs) lowpass(test_upperenv(1:end-sa)',lpthre,Fs)]);
         [maxenv, maxenvind] = max(abs(test_upperenv));
         plot([1 1]*maxenvind*(1/Fs),[-maxenv maxenv]);
         plot([1 1]*maxenvind*(1/Fs)+2*testdist/340,[-maxenv maxenv],'--');
@@ -39,4 +41,6 @@ function estimate_distance_env(base,test,testdist,Fs,thre)
         [~,b] = max(ds);
         plot([1 1]*(i+b-6)/Fs,[-maxenv maxenv]);
     end
+    estidist = (i+b-6-maxenvind)/Fs*340;
+    legend;
 end
