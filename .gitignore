@@ -4,6 +4,8 @@
 .*.swo
 *.html
 /data/
+*.zip
+*.png
 
 
 
