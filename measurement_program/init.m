@@ -8,20 +8,19 @@ if ~exist('initialized', 'var')
     measure_index = 1;
     
     % load waves
-    dirs = dir('../data/waves/*.mat');
-    measurements      = cell(1, length(dirs));
-    for i = 1:length(measurements)
-        d = dirs(i);
-        [~, n, ~] = fileparts(d.name);
-        measurements{i} = load_data(d.folder, n);
+    wave_files = dir('../data/waves/*.mat');
+    waves      = cell(1, length(wave_files));
+    for i = 1:length(waves)
+        f = wave_files(i);
+        [~, n, ~] = fileparts(f.name);
+        waves{i} = load_data(f.folder, n);
 
-        % Select waves cache
-        if ~isfield(measurements{i}, 'scale_index')
-            wave = measurements{i};
+        if ~isfield(waves{i}, 'scale_index')
+            wave = waves{i};
             abserrs = abs(wave.wave-mean(wave.wave));
             maxabserr = max(abserrs);
             scale_index = find(abserrs > maxabserr*0.03, 1, 'last');
-            measurements{i}.scale_index = scale_index;
+            waves{i}.scale_index = scale_index;
         end
     end
     
