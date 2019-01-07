@@ -44,6 +44,9 @@ Description >> cos wave
 ワークスペース変数 `waves` にも追加されるので注意。
 ======
 
+=== `estimate_distance` `m` ファイル
+`estimate_distance_*env` 関数を起動。
+
 === `correlation` 関数
 引数はmeasurement構造体とサンプリング周波数Fs +
 measurement構造体のmicrophoneとspeakerの相互相関を計算 +
