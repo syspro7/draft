@@ -39,6 +39,7 @@ if ~exist('initialized', 'var')
         for i2 = 1:length(mat_files)
             [~, n, ~] = fileparts(mat_files(i2).name);
             tmp_mats{i2} = load_data(dir_path, n);
+            tmp_mats{i2}.filename = n;
         end
         measurements{i}.data = tmp_mats;
     end
