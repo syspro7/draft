@@ -1,3 +1,15 @@
+## general
+.config
+.*.swp
+.*.swo
+*.html
+/data/
+*.zip
+*.png
+
+
+
+## MATALB
 # Windows default autosave extension
 *.asv
 

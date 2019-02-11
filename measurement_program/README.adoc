@@ -1,0 +1,72 @@
+:icons: font
+
+= 計測プログラム改修版
+
+`make_wave/` の整理版。 `make_wave/` はこのまま残して、以降は `measurement_program/` で開発。
+
+[NOTE]
+.注意
+====
+各 `.m` ファイルの先頭に
+[source, matlab]
+----
+run init.m
+----
+を書くこと。関数では不要。
+====
+
+== 関数と `m` ファイル
+
+=== `save_wave` `m` ファイル
+変数名を指定してファイルに保存。
+保存先は `draft/data/waves/`
+
+.実行例
+[source, MATLAB]
+----
+>> t = 0:1/Fs:1;
+>> s = sin(t);
+>> c = cos(t);
+>> save_wave
+wave data variable name >> s
+Enter save name >> test1
+Description >> sin wave
+>> save_wave
+wave data variable name >> c
+Enter save name >> test2
+Description >> cos wave
+----
+
+
+[WARNING]
+.副作用
+======
+ワークスペース変数 `waves` にも追加されるので注意。
+======
+
+=== `estimate_distance` `m` ファイル
+`estimate_distance_*env` 関数を起動。
+
+=== `correlation` 関数
+引数はmeasurement構造体とサンプリング周波数Fs +
+measurement構造体のmicrophoneとspeakerの相互相関を計算 +
+戻り値は[相互相関の大きさ, 時間のインデックス] +
+時間はあくまでインデックスでとっているので, 実際の時間に換算するならFsで割る必要がある. +
+また, 相互相関のプロットも表示.
+
+=== `correlationFromFile` 関数
+第一引数がmeasurement構造体ではなく, measurement構造体を保存しているファイルの場所を文字列で指定. +
+それ以外は等しい.
+
+=== `select_wave` 関数
+引数がwave構造体のcell配列. +
+cell配列のそれぞれのwave構造体をsubplotですべて表示, その後番号をコンソールに入力. +
+入力した番号のwave構造体が戻り値になる.
+
+== データ構造
+
+=== `wave` データ構造体
+- `wave` : 振幅データ
+- `Fs`   : サンプリング周波数。 `init.m` で44.1 kHzに固定。
+- `name` : データ名
+- `description` : 説明
