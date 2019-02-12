@@ -67,6 +67,6 @@ cell配列のそれぞれのwave構造体をsubplotですべて表示, その後
 
 === `wave` データ構造体
 - `wave` : 振幅データ
-- `Fs`   : サンプリング周波数。 `init.m` で44.1 kHzに固定。
+- `Fs`   : サンプリング周波数。 `init.m` で96 kHzに固定。
 - `name` : データ名
 - `description` : 説明
